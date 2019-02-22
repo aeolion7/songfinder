@@ -1,4 +1,9 @@
 language: node_js
 node_js:
-  - node
-
+- node
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: lionarons-songfinder
+  api_key:
+    secure: V2xBsFDHpX8aHfdpKNZQAeDtXoVZr7hEm61H/X1V6urwpDFY9vbmAshrizCfsrgAi+AW8YP8eMAmrr/nOIhI4FUBvpU9r2bsv7sF2L1iHXSjjdhaQGzOvLMv0oW+Cup1LobAAAgH2KZ/Zkcce110Ehtl3/WlKis3zAXllH6y/N4f+P6xcYgnsc5WE1z5wumMaZVkc//aoPSJ9IfsjSx9dEQUP61rU7lSAwuETsewgnFz1xDc7dKgEhNy/itCI72BcbB3KbiXsilNQKVQDENGul9wixpxHHQdi/LHMGIb772PYlhwSZ/kZuZSxFkFMse25GXDqSY4DDKIaBIN9CSPI3t/pFqAd3rTbZBcO8o9FsTYDji4+n/pjZn4Ay9ss7moexQhyI+/ezQyt2X7Ex2mNQQSOIrgW5CqGnHJrWzGWLswjtQ2o3coFykz6DmbJjUETR8rJGH1EbcIs8H0agG71fvFzQ3GWJDZDMDURGL3m1s2na7KT/wbQk6TY8fB/KK22ILr1o6tRlRuIWASvhGp4Clfgs6TbPzAhiNByw4oSTGgMozMIdffn7yVN10zMsfHh5H73mPkvPsfZ/PSPOd74mHQqeXudYsnAK/XlnhvIWLhVbse9EQ6PIqlfdzN3cCsE9JMQ5/lV+OH21lC12jtyzawzACO1y5i2xWgBs0hnEE=
