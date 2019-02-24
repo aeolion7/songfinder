@@ -7,8 +7,8 @@ export class Header extends Component {
     super(props);
     this.state = {
       artist: '',
-      startYear: '',
-      endYear: '',
+      startDate: '',
+      endDate: '',
     };
     this.generateArtistSlug = this.generateArtistSlug.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -28,13 +28,13 @@ export class Header extends Component {
     this.props.startLoading();
     this.props.searchForSongs(
       this.generateArtistSlug(this.state.artist),
-      this.state.startYear,
-      this.state.endYear
+      this.state.startDate,
+      this.state.endDate
     );
     this.setState({
       artist: '',
-      startYear: '',
-      endYear: '',
+      startDate: '',
+      endDate: '',
     });
   }
 
@@ -55,27 +55,27 @@ export class Header extends Component {
           />
           <span className="required">*</span>
           <br />
-          <label htmlFor="startYear">From:</label>
+          <label htmlFor="startDate">From:</label>
           <input
-            className="year-input"
+            className="date-input"
             type="text"
-            name="startYear"
-            value={this.state.startYear}
+            name="startDate"
+            value={this.state.startDate}
             onChange={this.handleChange}
-            pattern="[0-9]{4}"
-            placeholder="2001"
-            title="Please enter a 4-digit year (ex. 2001)."
+            pattern="[0-9-]+"
+            placeholder="06-29-1970"
+            title="Please enter a date in MM-DD-YYYY format."
           />
-          <label htmlFor="endYear">To:</label>
+          <label htmlFor="endDate">To:</label>
           <input
-            className="year-input"
+            className="date-input"
             type="text"
-            name="endYear"
-            value={this.state.endYear}
+            name="endDate"
+            value={this.state.endDate}
             onChange={this.handleChange}
-            pattern="[0-9]{4}"
-            placeholder="2007"
-            title="Please enter a 4-digit year (ex. 2001)."
+            pattern="[0-9-]+"
+            placeholder="07-16-2008"
+            title="Please enter a date in MM-DD-YYYY format."
           />
           <button type="submit">Submit</button>
         </form>
@@ -86,8 +86,8 @@ export class Header extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchForSongs: (artistSlug, startYear, endYear) => {
-      dispatch(getSongsFromAPI(artistSlug, startYear, endYear));
+    searchForSongs: (artistSlug, startDate, endDate) => {
+      dispatch(getSongsFromAPI(artistSlug, startDate, endDate));
     },
     startLoading: () => {
       dispatch(startLoading());

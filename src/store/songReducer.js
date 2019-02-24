@@ -1,5 +1,6 @@
 import axios from 'axios';
 import 'babel-polyfill';
+import { formatDate, compare } from '../utils/utils';
 
 const initialState = {
   songs: [],
@@ -32,8 +33,8 @@ const stopLoadingOnError = () => {
 
 export const getSongsFromAPI = (
   artistSlug,
-  startYear,
-  endYear
+  startDate,
+  endDate
 ) => async dispatch => {
   try {
     const { data } = await axios.get(
@@ -43,22 +44,18 @@ export const getSongsFromAPI = (
 
     let songArray = data.results;
 
-    if (startYear) {
+    if (startDate) {
+      const checkStartDate = formatDate(startDate);
       songArray = songArray.filter(
-        song => song.releaseDate.slice(0, 4) >= startYear
+        song => song.releaseDate.slice(0, 10) >= checkStartDate
       );
     }
 
-    if (endYear) {
+    if (endDate) {
+      const checkEndDate = formatDate(endDate);
       songArray = songArray.filter(
-        song => song.releaseDate.slice(0, 4) <= endYear
+        song => song.releaseDate.slice(0, 10) <= checkEndDate
       );
-    }
-
-    function compare(a, b) {
-      if (a.releaseDate < b.releaseDate) return -1;
-      if (a.releaseDate > b.releaseDate) return 1;
-      return 0;
     }
 
     // sorts songs in chronological order
