@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
+import { default as Header } from './components/Header';
 import SongList from './components/SongList';
 
 class App extends Component {
