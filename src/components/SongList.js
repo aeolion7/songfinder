@@ -20,14 +20,30 @@ export class SongList extends Component {
   render() {
     return (
       <div id="song-list">
-        {this.props.songs &&
-          this.props.songs.map(song => (
-            <div key={song.trackId}>
-              <p>{song.trackName}</p>
-              <img src={song.artworkUrl100} alt="Track art" />
-              <p>{this.formatReleaseDate(song.releaseDate)}</p>
-            </div>
-          ))}
+        {this.props.hasSearched ? (
+          this.props.songs && this.props.songs[0] ? (
+            this.props.songs.map(song => (
+              <div key={song.trackId}>
+                <p>{song.trackName}</p>
+                <img src={song.artworkUrl100} alt="Track art" />
+                <p>{this.formatReleaseDate(song.releaseDate)}</p>
+              </div>
+            ))
+          ) : (
+            <p className="status-message">
+              There were no songs found using the parameters you specified.
+              Please check that you have spelled the artist's name correctly
+              and, if you are using years to narrow down your search, please
+              make sure that they are valid years.
+            </p>
+          )
+        ) : (
+          <p className="status-message">
+            Please search for an artist using the above text input to return a
+            list of their songs. You may also choose to specify a release year
+            range to narrow down your results.
+          </p>
+        )}
       </div>
     );
   }
@@ -35,8 +51,8 @@ export class SongList extends Component {
 
 const mapStateToProps = state => {
   return {
-    songs: state.songReducer.songs.results,
-    songCount: state.songReducer.songs.resultCount,
+    songs: state.songReducer.songs,
+    hasSearched: state.songReducer.hasSearched,
   };
 };
 

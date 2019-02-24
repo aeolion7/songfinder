@@ -25,7 +25,11 @@ export class Header extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.searchForSongs(this.generateArtistSlug(this.state.artist));
+    this.props.searchForSongs(
+      this.generateArtistSlug(this.state.artist),
+      this.state.startYear,
+      this.state.endYear
+    );
     this.setState({
       artist: '',
       startYear: '',
@@ -37,7 +41,7 @@ export class Header extends Component {
     return (
       <div id="header">
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="artist">Artist:</label>
+          <label htmlFor="artist">Search for songs by:</label>
           <input
             type="text"
             name="artist"
@@ -48,22 +52,26 @@ export class Header extends Component {
             required
           />
           <span className="required">*</span>
-          <label htmlFor="startYear">Start Year:</label>
+          <label htmlFor="startYear">From:</label>
           <input
+            className="year-input"
             type="text"
             name="startYear"
             value={this.state.startYear}
             onChange={this.handleChange}
             pattern="[0-9]{4}"
+            placeholder="2001"
             title="Please enter a 4-digit year (ex. 2001)."
           />
-          <label htmlFor="endYear">End Year:</label>
+          <label htmlFor="endYear">To:</label>
           <input
+            className="year-input"
             type="text"
             name="endYear"
             value={this.state.endYear}
             onChange={this.handleChange}
             pattern="[0-9]{4}"
+            placeholder="2001"
             title="Please enter a 4-digit year (ex. 2001)."
           />
           <button type="submit">Submit</button>
@@ -75,8 +83,8 @@ export class Header extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchForSongs: artistSlug => {
-      dispatch(getSongsFromAPI(artistSlug));
+    searchForSongs: (artistSlug, startYear, endYear) => {
+      dispatch(getSongsFromAPI(artistSlug, startYear, endYear));
     },
   };
 };

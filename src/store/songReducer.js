@@ -3,6 +3,7 @@ import 'babel-polyfill';
 
 const initialState = {
   songs: [],
+  hasSearched: false,
 };
 
 const GET_SONGS_FROM_API = 'GET_SONGS_FROM_API';
@@ -14,18 +15,37 @@ const getSongs = songs => {
   };
 };
 
-export const getSongsFromAPI = artistSlug => async dispatch => {
+export const getSongsFromAPI = (
+  artistSlug,
+  startYear,
+  endYear
+) => async dispatch => {
   const { data } = await axios.get(
     `https://itunes.apple.com/search?term=${artistSlug}&media=music&entity=song&attribute=artistTerm&limit=200`,
     { headers: { 'Access-Control-Allow-Origin': '*' } }
   );
-  dispatch(getSongs(data));
+
+  let songArray = data.results;
+
+  if (startYear) {
+    songArray = songArray.filter(
+      song => song.releaseDate.slice(0, 4) >= startYear
+    );
+  }
+
+  if (endYear) {
+    songArray = songArray.filter(
+      song => song.releaseDate.slice(0, 4) <= endYear
+    );
+  }
+
+  dispatch(getSongs(songArray));
 };
 
 const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SONGS_FROM_API:
-      return { ...state, songs: action.songs };
+      return { ...state, songs: action.songs, hasSearched: true };
     default:
       return state;
   }
