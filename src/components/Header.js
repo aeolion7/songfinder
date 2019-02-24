@@ -36,6 +36,8 @@ class Header extends Component {
             name="artist"
             value={this.state.artist}
             onChange={this.handleChange}
+            pattern="[a-zA-Z0-9 ]+"
+            title="Only letters (A-Z, a-z), numbers (0-9), and spaces are permitted."
             required
           />
           <label htmlFor="startYear">Start Year:</label>
