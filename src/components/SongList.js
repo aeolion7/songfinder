@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { ClipLoader } from 'react-spinners';
 
 export class SongList extends Component {
   constructor(props) {
@@ -20,6 +21,15 @@ export class SongList extends Component {
   render() {
     return (
       <div id="song-list">
+        <div id="loading">
+          <ClipLoader
+            id="loading-spinner"
+            sizeUnit={'px'}
+            size={65}
+            color={'#fff'}
+            loading={this.props.loading}
+          />
+        </div>
         {this.props.hasSearched ? (
           this.props.songs && this.props.songs[0] ? (
             <table>
@@ -68,7 +78,10 @@ const mapStateToProps = state => {
   return {
     songs: state.songReducer.songs,
     hasSearched: state.songReducer.hasSearched,
+    loading: state.songReducer.loading,
   };
 };
 
-export default connect(mapStateToProps)(SongList);
+export default connect(
+  mapStateToProps,
+)(SongList);

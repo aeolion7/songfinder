@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getSongsFromAPI } from '../store/songReducer';
+import { getSongsFromAPI, startLoading } from '../store/songReducer';
 
 export class Header extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ export class Header extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
+    this.props.startLoading();
     this.props.searchForSongs(
       this.generateArtistSlug(this.state.artist),
       this.state.startYear,
@@ -52,6 +53,7 @@ export class Header extends Component {
             required
           />
           <span className="required">*</span>
+          <br />
           <label htmlFor="startYear">From:</label>
           <input
             className="year-input"
@@ -85,6 +87,9 @@ const mapDispatchToProps = dispatch => {
   return {
     searchForSongs: (artistSlug, startYear, endYear) => {
       dispatch(getSongsFromAPI(artistSlug, startYear, endYear));
+    },
+    startLoading: () => {
+      dispatch(startLoading());
     },
   };
 };

@@ -4,14 +4,22 @@ import 'babel-polyfill';
 const initialState = {
   songs: [],
   hasSearched: false,
+  loading: false,
 };
 
 const GET_SONGS_FROM_API = 'GET_SONGS_FROM_API';
+const START_LOADING = 'START_LOADING';
 
 const getSongs = songs => {
   return {
     type: GET_SONGS_FROM_API,
     songs,
+  };
+};
+
+export const startLoading = () => {
+  return {
+    type: START_LOADING,
   };
 };
 
@@ -54,7 +62,14 @@ export const getSongsFromAPI = (
 const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SONGS_FROM_API:
-      return { ...state, songs: action.songs, hasSearched: true };
+      return {
+        ...state,
+        songs: action.songs,
+        hasSearched: true,
+        loading: false,
+      };
+    case START_LOADING:
+      return { ...state, loading: true };
     default:
       return state;
   }

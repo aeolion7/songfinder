@@ -32,6 +32,7 @@ h1 {
   flex-flow: row nowrap;
   justify-content: space-between;
   padding: 2px 1vw;
+  text-align: center;
   width: 98vw;
 }
 
@@ -52,6 +53,12 @@ h1 {
 
 #header {
   background-color: lightblue;
+}
+
+#loading {
+  position: fixed;
+  right: 1vw;
+  top: 0.5vh;
 }
 
 #song-list {
