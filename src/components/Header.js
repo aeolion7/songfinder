@@ -62,7 +62,7 @@ export class Header extends Component {
             name="startDate"
             value={this.state.startDate}
             onChange={this.handleChange}
-            pattern="[0-9-]+"
+            pattern="\d{1,2}-\d{1,2}-\d{4}"
             placeholder="06-29-1970"
             title="Please enter a date in MM-DD-YYYY format."
           />
@@ -73,7 +73,7 @@ export class Header extends Component {
             name="endDate"
             value={this.state.endDate}
             onChange={this.handleChange}
-            pattern="[0-9-]+"
+            pattern="\d{1,2}-\d{1,2}-\d{4}"
             placeholder="07-16-2008"
             title="Please enter a date in MM-DD-YYYY format."
           />
