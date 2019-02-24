@@ -26,7 +26,7 @@ export class SongList extends Component {
             id="loading-spinner"
             sizeUnit={'px'}
             size={65}
-            color={'#fff'}
+            color={'#333'}
             loading={this.props.loading}
           />
         </div>

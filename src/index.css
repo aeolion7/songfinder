@@ -13,6 +13,13 @@ code {
     monospace;
 }
 
+form button {
+  background-color: #fff;
+  display: block;
+  margin: 1px;
+  padding: 5px;
+}
+
 h1 {
   margin: 0;
 }
@@ -53,6 +60,7 @@ h1 {
 
 #header {
   background-color: lightblue;
+  font-size: 110%;
 }
 
 #loading {

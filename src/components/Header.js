@@ -49,6 +49,7 @@ export class Header extends Component {
             value={this.state.artist}
             onChange={this.handleChange}
             pattern="[a-zA-Z0-9 ]+"
+            placeholder="Red Hot Chili Peppers"
             title="Only letters (A-Z, a-z), numbers (0-9), and spaces are permitted."
             required
           />
@@ -73,7 +74,7 @@ export class Header extends Component {
             value={this.state.endYear}
             onChange={this.handleChange}
             pattern="[0-9]{4}"
-            placeholder="2001"
+            placeholder="2007"
             title="Please enter a 4-digit year (ex. 2001)."
           />
           <button type="submit">Submit</button>
