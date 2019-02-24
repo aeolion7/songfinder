@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getSongsFromAPI } from '../store/songReducer';
 
 class Header extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class Header extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
+    this.props.searchForSongs(this.generateArtistSlug(this.state.artist));
     this.setState({
       artist: '',
       startYear: '',
@@ -44,6 +47,7 @@ class Header extends Component {
             title="Only letters (A-Z, a-z), numbers (0-9), and spaces are permitted."
             required
           />
+          <span className="required">*</span>
           <label htmlFor="startYear">Start Year:</label>
           <input
             type="text"
@@ -69,4 +73,15 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = dispatch => {
+  return {
+    searchForSongs: artistSlug => {
+      dispatch(getSongsFromAPI(artistSlug));
+    },
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);
