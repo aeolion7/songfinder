@@ -28,5 +28,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "https://lionarons-songfinder.herokuapp.com"
+  "homepage": "https://lionarons-songfinder.herokuapp.com"
 }
