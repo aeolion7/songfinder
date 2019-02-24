@@ -8,8 +8,13 @@ class Header extends Component {
       startYear: '',
       endYear: '',
     };
+    this.generateArtistSlug = this.generateArtistSlug.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  generateArtistSlug(artistName) {
+    return artistName.replace(/\s/g, '+');
   }
 
   handleChange(evt) {
@@ -18,7 +23,6 @@ class Header extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log('submit');
     this.setState({
       artist: '',
       startYear: '',
@@ -46,6 +50,8 @@ class Header extends Component {
             name="startYear"
             value={this.state.startYear}
             onChange={this.handleChange}
+            pattern="[0-9]{4}"
+            title="Please enter a 4-digit year (ex. 2001)."
           />
           <label htmlFor="endYear">End Year:</label>
           <input
@@ -53,6 +59,8 @@ class Header extends Component {
             name="endYear"
             value={this.state.endYear}
             onChange={this.handleChange}
+            pattern="[0-9]{4}"
+            title="Please enter a 4-digit year (ex. 2001)."
           />
           <button type="submit">Submit</button>
         </form>
