@@ -1,3 +1,10 @@
+# Setup Instructions
+
+To run this application on your local machine:
+1. Clone this repository to your local computer and `cd` into it.
+2. Run `npm install` to install necessary dependencies.
+3. Run `npm start` and it will do the rest!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
