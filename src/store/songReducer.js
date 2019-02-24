@@ -39,6 +39,15 @@ export const getSongsFromAPI = (
     );
   }
 
+  function compare(a, b) {
+    if (a.releaseDate < b.releaseDate) return -1;
+    if (a.releaseDate > b.releaseDate) return 1;
+    return 0;
+  }
+
+  // sorts songs in chronological order
+  songArray.sort(compare);
+
   dispatch(getSongs(songArray));
 };
 

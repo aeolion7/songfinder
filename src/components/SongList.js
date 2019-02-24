@@ -22,13 +22,28 @@ export class SongList extends Component {
       <div id="song-list">
         {this.props.hasSearched ? (
           this.props.songs && this.props.songs[0] ? (
-            this.props.songs.map(song => (
-              <div key={song.trackId}>
-                <p>{song.trackName}</p>
-                <img src={song.artworkUrl100} alt="Track art" />
-                <p>{this.formatReleaseDate(song.releaseDate)}</p>
-              </div>
-            ))
+            <table>
+              <tbody>
+                <tr className="song-row">
+                  <td>Album Art</td>
+                  <td>Name of Song</td>
+                  <td>Release Date</td>
+                </tr>
+                {this.props.songs.map(song => (
+                  <tr key={song.trackId} className="song-row">
+                    <td>
+                      <img src={song.artworkUrl100} alt="Track art" />
+                    </td>
+                    <td className="centered">
+                      <p>{song.trackName}</p>
+                    </td>
+                    <td>
+                      <p>{this.formatReleaseDate(song.releaseDate)}</p>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           ) : (
             <p className="status-message">
               There were no songs found using the parameters you specified.

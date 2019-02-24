@@ -17,8 +17,22 @@ h1 {
   margin: 0;
 }
 
+.centered {
+  text-align: center;
+}
+
 .required {
   color: red;
+}
+
+.song-row {
+  align-items: center;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 2px 1vw;
+  width: 98vw;
 }
 
 .status-message {
