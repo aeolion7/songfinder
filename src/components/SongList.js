@@ -58,14 +58,14 @@ export class SongList extends Component {
             <p className="status-message">
               There were no songs found using the parameters you specified.
               Please check that you have spelled the artist's name correctly
-              and, if you are using years to narrow down your search, please
-              make sure that they are valid years.
+              and, if you are using dates to narrow down your search, please
+              make sure that they are valid dates.
             </p>
           )
         ) : (
           <p className="status-message">
             Please search for an artist using the above text input to return a
-            list of their songs. You may also choose to specify a release year
+            list of their songs. You may also choose to specify a release date
             range to narrow down your results.
           </p>
         )}
